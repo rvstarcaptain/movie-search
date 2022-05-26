@@ -1,31 +1,21 @@
 
 
 import axios from 'axios';
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import { Card } from 'react-bootstrap';
-
-
 export default function Search() {
     const [text, setText] = useState([]);
     const [movie, setMovie] = useState([]);
-    const [error,setError] =useState(true);
-
-        function getMovieName(e) {
-            e.preventDefault();
-            axios.get(`http://www.omdbapi.com/?s=${text}&apikey=bb7da3c`).then((response) => {
-              
-               
-                console.log(response.data.Search)
-                setMovie(response.data.Search)
-                setText('')
-            
-            }).catch(error =>{
-                setMovie(error,"please write valid movie name")
-            })
-
-    
-        }
-    
+    function getMovieName(e) {
+        e.preventDefault();
+        axios.get(`http://www.omdbapi.com/?s=${text}&apikey=bb7da3c`).then((response) => {
+            console.log(response.data.Search)
+            setMovie(response.data.Search)
+            setText('')
+        }).catch(error => {
+            setMovie(error, "please write valid movie name")
+        })
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,8 +32,6 @@ export default function Search() {
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Link</a>
                             </li>
-
-
                         </ul>
                         <form className="d-flex" role="search" onSubmit={getMovieName}>
                             <input className="form-control me-2" value={text} onChange={(e) => setText(e.target.value)} type="search" placeholder="Search movies...." aria-label="Search" />
@@ -59,8 +47,8 @@ export default function Search() {
                     {
                         movie.map((value, id) => {
                             return (
-                                (
-                                    error? <div className='col-3' key={id}>
+
+                                <div className='col-3' key={id}>
                                     <Card style={{ width: '18rem', col: '3' }} key={id} >
                                         <Card.Img variant="top" src={value.Poster} />
                                         <Card.Body>
@@ -72,16 +60,7 @@ export default function Search() {
                                         </Card.Body>
                                     </Card>
 
-                                </div>:"please write valid movie name"
-                                )
-                                   
-                                
-
-
-
-
-
-
+                                </div>
                             )
                         })
                     }
