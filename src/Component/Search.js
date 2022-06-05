@@ -8,7 +8,7 @@ export default function Search() {
     const [movie, setMovie] = useState([]);
     function getMovieName(e) {
         e.preventDefault();
-        axios.get(`http://www.omdbapi.com/?s=${text}&apikey=bb7da3c`).then((response) => {
+        axios.get(`https://www.omdbapi.com/?s=${text}&apikey=bb7da3c`).then((response) => {
             console.log(response.data.Search)
             setMovie(response.data.Search)
             setText('')
