@@ -1,5 +1,5 @@
 
-
+import './Search.css';
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Card } from 'react-bootstrap';
@@ -16,7 +16,7 @@ export default function Search() {
             setMovie(error, "please write valid movie name")
         })
     }
-    
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,26 +42,33 @@ export default function Search() {
                 </div>
             </nav>
 
-            <div className='container'>
-                <div className='row'>
+            <div className='container  '>
+                <div className='row  '>
 
                     {
                         movie.map((value, id) => {
                             return (
-                                
-                                <div  className='col-3  m-4 p-2'  key={id}>
-                                    <Card style={{ width: '18rem', col: '3' ,row:'2' }} key={id} >
-                                        <Card.Img variant="top" src={value.Poster} />
-                                        <Card.Body>
-                                            <Card.Title>{value.Title}</Card.Title>
-                                            <Card.Text>
-                                                {value.Year}
-                                            </Card.Text>
+                                <>
+                                    <div className='col-3  cardhover m-4 p-4' key={id}>
+                                        <Card style={{ width: '18rem', col: '3', row: '2' }} key={id} >
+                                            <Card.Img variant="top" src={value.Poster} />
+                                            <Card.Body  >
+                                                <Card.Title >{value.Title}</Card.Title>
+                                                <Card.Text  >
+                                                    Year: {value.Year}
+                                                </Card.Text>
 
-                                        </Card.Body>
-                                    </Card>
+                                            </Card.Body>
 
-                                </div>
+                                        </Card>
+
+                                    </div>
+                                   
+
+                                </>
+
+
+
                             )
                         })
                     }
