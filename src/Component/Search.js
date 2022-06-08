@@ -16,6 +16,7 @@ export default function Search() {
             setMovie(error, "please write valid movie name")
         })
     }
+    
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,9 +48,9 @@ export default function Search() {
                     {
                         movie.map((value, id) => {
                             return (
-
-                                <div className='col-3' key={id}>
-                                    <Card style={{ width: '18rem', col: '3' }} key={id} >
+                                
+                                <div  className='col-3  m-4 p-2'  key={id}>
+                                    <Card style={{ width: '18rem', col: '3' ,row:'2' }} key={id} >
                                         <Card.Img variant="top" src={value.Poster} />
                                         <Card.Body>
                                             <Card.Title>{value.Title}</Card.Title>
